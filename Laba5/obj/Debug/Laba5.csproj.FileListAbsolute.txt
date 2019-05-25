@@ -1,0 +1,6 @@
+D:\Програмы\dotNet\Laba5\Laba5\bin\Debug\Laba5.exe
+D:\Програмы\dotNet\Laba5\Laba5\bin\Debug\Laba5.pdb
+D:\Програмы\dotNet\Laba5\Laba5\obj\Debug\Laba5.csprojAssemblyReference.cache
+D:\Програмы\dotNet\Laba5\Laba5\obj\Debug\Laba5.csproj.CoreCompileInputs.cache
+D:\Програмы\dotNet\Laba5\Laba5\obj\Debug\Laba5.exe
+D:\Програмы\dotNet\Laba5\Laba5\obj\Debug\Laba5.pdb
