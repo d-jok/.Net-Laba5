@@ -39,8 +39,16 @@ namespace Laba5
             MemoryStream stream = new MemoryStream();
             BinaryFormatter formatter = new BinaryFormatter();
 
-            formatter.Serialize(stream, SerializableObject);
-            stream.Seek(0, SeekOrigin.Begin);
+            try
+            {
+                formatter.Serialize(stream, SerializableObject);
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Failed to copy. Reason: " + e.Message);
+                //return false;
+            }
 
             return (Student)formatter.Deserialize(stream);
         }
@@ -68,9 +76,11 @@ namespace Laba5
         public bool Load(string Filename)
         {
             FileStream LoadFromFile = File.OpenRead(Filename);
+            MemoryStream mStream = new MemoryStream();
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
+                LoadFromFile.Position = 0;
                 ListOfExam = (List<Exam>)formatter.Deserialize(LoadFromFile);
                 return true;
             }
@@ -85,7 +95,7 @@ namespace Laba5
             }
         }
 
-        public static bool Save(string Filename, Student Object)
+        public static bool SaveNew(string Filename, List<Exam> Object)
         {
             FileStream SaveInFile = File.OpenWrite(Filename);
             BinaryFormatter formatter = new BinaryFormatter();
@@ -105,13 +115,13 @@ namespace Laba5
             }
         }
 
-        public static bool Load(string Filename, Student Object)
+        public static bool LoadNew(string Filename, List<Exam> Object)
         {
             FileStream LoadFromFile = File.OpenRead(Filename);
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
-                Object = (Student)formatter.Deserialize(LoadFromFile);
+                Object = (List<Exam>)formatter.Deserialize(LoadFromFile);
                 return true;
             }
             catch (SerializationException e)
@@ -130,9 +140,9 @@ namespace Laba5
             Console.WriteLine("Список екзаменів: \nВведіть через кому: назву предмету, оцінку та дату іспиту (Рік.Місяць.День)");
 
             string[] words = Console.ReadLine().Split(',');
-            string Name;
-            int Total;
-            DateTime Date;
+            string Name = "Default";
+            int Total = 0;
+            DateTime Date = new DateTime(2019, 10, 15);
 
             //Name
             Name = words[0];
@@ -169,7 +179,7 @@ namespace Laba5
                 AddFromConsole();
             }
 
-            //ListOfExam.Add(new Exam(Name, Total, Date));
+            ListOfExam.Add(new Exam(Name, Total, Date));
             return true;            
         }
 

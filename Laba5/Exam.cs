@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Laba5
 {
+    [Serializable]
     class Exam
     {
         public string Subject;

@@ -12,6 +12,7 @@ namespace Laba5
         DateTime Date { get; set; }
     }
 
+    [Serializable]
     public class Person : IDateAndCopy, IComparable, IComparer<Person>
     {
         protected string Name { get; set; }
