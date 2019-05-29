@@ -12,7 +12,7 @@ namespace Laba5
         {
             Console.OutputEncoding = System.Text.Encoding.Default;
             Student T = new Student();
-            Person J = new Person();
+
             Console.WriteLine("Введіть ім'я файлу: ");
             string filename = Console.ReadLine();
 
@@ -27,11 +27,13 @@ namespace Laba5
                 File.Create(filename);
             }
 
-            //Student.DeepCopy(T);
+            Student H = Student.DeepCopy(T);
 
             Console.WriteLine(T);
             T.AddFromConsole();
             T.Save(filename);
+
+            Console.WriteLine(H);
             Console.WriteLine(T);
 
             Student.LoadNew(filename, T.AccessExam);
